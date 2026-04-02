@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Vy Yêu</title>
+    <title>Vy Yêu 💗</title>
     <style>
         * {
             margin: 0;
@@ -178,31 +178,31 @@
             transition: transform 0.1s ease;
         }
 
-        /* hiệu ứng rơi mưa */
+        /* hiệu ứng rơi chậm, êm ái - thời gian dài hơn, nhẹ nhàng */
         @keyframes fall {
             0% {
-                transform: translateY(-15vh) rotate(0deg) scale(0.7);
+                transform: translateY(-15vh) rotate(0deg) scale(0.6);
                 opacity: 0.9;
             }
-            80% {
-                opacity: 0.7;
+            85% {
+                opacity: 0.6;
             }
             100% {
-                transform: translateY(105vh) rotate(360deg) scale(1.1);
+                transform: translateY(110vh) rotate(380deg) scale(1.05);
                 opacity: 0;
             }
         }
 
         /* thêm biến thể lắc nhẹ khi rơi */
         .hand-drawn-heart {
-            animation-timing-function: cubic-bezier(0.45, 0.85, 0.4, 1);
+            animation-timing-function: cubic-bezier(0.4, 0.7, 0.3, 1);
         }
 
-        /* custom các kích thước khác nhau */
-        .heart-small { width: 28px; height: 28px; }
-        .heart-medium { width: 40px; height: 40px; }
-        .heart-large { width: 58px; height: 58px; }
-        .heart-xl { width: 75px; height: 75px; }
+        /* custom các kích thước khác nhau - đa dạng nhưng vừa phải */
+        .heart-small { width: 26px; height: 26px; }
+        .heart-medium { width: 36px; height: 36px; }
+        .heart-large { width: 48px; height: 48px; }
+        .heart-xl { width: 62px; height: 62px; }
 
         /* hiệu ứng vẽ tay tinh tế: thêm lớp vẽ nguệch ngoạc cho background */
         .doodle-bg {
@@ -260,6 +260,10 @@
             .hand-drawn-heart svg {
                 filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
             }
+            .heart-small { width: 22px; height: 22px; }
+            .heart-medium { width: 30px; height: 30px; }
+            .heart-large { width: 42px; height: 42px; }
+            .heart-xl { width: 54px; height: 54px; }
         }
 
         /* vẽ tay hiệu ứng nét bút cho toàn trang (không ảnh hưởng) */
@@ -285,7 +289,7 @@
         </div>
         <div class="caption-wrapper">
             <div class="handwritten-caption">
-                💕 NGUYỄN THỊ HÀ VY✨
+                💞 Nguyễn Thị Hà Vy 💕
             </div>
         </div>
     </div>
@@ -295,27 +299,26 @@
 
     <!-- nút thủ công để thêm trái tim vẽ tay (giữ hiệu ứng mưa vui hơn) -->
     <button class="add-heart-btn" id="addHeartBtn">
-        💕💞
+        Cre: Duy Hoang 
     </button>
 
     <!-- trang trí doodle nền -->
-    <div class="doodle-bg">Vy Yêu</div>
-    <div class="scribble">💞💕</div>
+    <div class="doodle-bg">💝 Vy Yêu</div>
+    <div class="scribble">💕💞💓</div>
 
     <script>
         (function() {
-            // --- Cấu hình mưa trái tim ---
+            // --- Cấu hình mưa trái tim chậm, nhẹ nhàng, không lag ---
             const CONTAINER = document.getElementById('heartRainContainer');
-            // Tạo sẵn 3 mẫu SVG trái tim kiểu vẽ tay khác nhau (nét bút chì, mộc mạc)
+            
+            // 3 mẫu SVG trái tim kiểu vẽ tay (nhẹ nhàng, nét mộc)
             const heartSVGList = [
-                // Mẫu 1: trái tim vẽ tay thanh mảnh, nét lượn
                 `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M50,88 C50,88 18,58 18,38 C18,24 28,14 40,14 C48,14 50,22 50,22 C50,22 52,14 60,14 C72,14 82,24 82,38 C82,58 50,88 50,88Z" 
                           fill="#ff8aa8" stroke="#c94f6f" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 2" />
                     <path d="M36,33 C36,33 42,27 50,32" stroke="#b13e5c" stroke-width="1.8" fill="none" stroke-linecap="round"/>
                     <circle cx="62" cy="35" r="2" fill="#ffb7c3" stroke="#b13e5c" stroke-width="1"/>
                 </svg>`,
-                // Mẫu 2: trái tim mập hơn, kiểu sketch nhiều nét
                 `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M50,85 C50,85 22,58 22,40 C22,28 30,20 40,20 C48,20 50,27 50,27 C50,27 52,20 60,20 C70,20 78,28 78,40 C78,58 50,85 50,85Z" 
                           fill="#ff7b9c" stroke="#ad3f5e" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -323,7 +326,6 @@
                     <path d="M46 54 Q50 62 54 54" stroke="#9f3a57" stroke-width="2" fill="none" stroke-linecap="round"/>
                     <path d="M20 45 L15 50 M80 45 L85 50" stroke="#b34c6b" stroke-width="1.5" stroke-dasharray="2 1"/>
                 </svg>`,
-                // Mẫu 3: trái tim với nét vẽ nguệch ngoạc, có hoa văn nhỏ
                 `<svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M50,84 C50,84 25,60 25,42 C25,31 34,24 43,24 C50,24 50,31 50,31 C50,31 50,24 57,24 C66,24 75,31 75,42 C75,60 50,84 50,84Z" 
                           fill="#ff90ae" stroke="#c74266" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="4 2"/>
@@ -334,10 +336,10 @@
                 </svg>`
             ];
 
-            // Danh sách kích thước lớp
+            // Kích thước đa dạng nhưng gọn nhẹ
             const sizeClasses = ['heart-small', 'heart-medium', 'heart-large', 'heart-xl'];
             
-            // Tạo một trái tim ngẫu nhiên với vị trí, kích thước, tốc độ rơi
+            // Tạo một trái tim với tốc độ rơi chậm, thời gian dài
             function createHeart() {
                 const heartDiv = document.createElement('div');
                 heartDiv.classList.add('hand-drawn-heart');
@@ -350,94 +352,90 @@
                 const randomSizeClass = sizeClasses[Math.floor(Math.random() * sizeClasses.length)];
                 heartDiv.classList.add(randomSizeClass);
                 
-                // Vị trí ngang random từ 0% đến 100% chiều rộng
+                // Vị trí ngang random từ 0% đến 100%
                 const leftPos = Math.random() * 100;
                 heartDiv.style.left = `${leftPos}%`;
-                heartDiv.style.bottom = 'auto';
-                heartDiv.style.top = '-5%';
+                heartDiv.style.top = '-8%';   // bắt đầu từ trên cao
                 
-                // Thời gian rơi ngẫu nhiên (từ 5s đến 12s) tạo cảm giác mưa tự nhiên
-                const duration = 5 + Math.random() * 8;
+                // *** THỜI GIAN RƠI CHẬM: từ 9s đến 15s (rất nhẹ nhàng, tránh lag) ***
+                const duration = 9 + Math.random() * 7;  // 9~16 giây
                 heartDiv.style.animationDuration = `${duration}s`;
                 
-                // Delay ngẫu nhiên để mưa rải rác
-                const delay = Math.random() * 5;
+                // Delay ngẫu nhiên để tránh dồn cục cùng lúc
+                const delay = Math.random() * 6;
                 heartDiv.style.animationDelay = `${delay}s`;
                 
-                // Thêm hiệu ứng xoay và nghiêng khởi đầu khác nhau (tuỳ chỉnh rotate ban đầu)
-                const startRotate = Math.random() * 60 - 30;
+                // Góc xoay ban đầu nhẹ nhàng
+                const startRotate = Math.random() * 50 - 25;
                 heartDiv.style.transform = `rotate(${startRotate}deg)`;
                 
-                // Tuỳ chỉnh độ mờ đục ban đầu đa dạng
-                heartDiv.style.opacity = 0.7 + Math.random() * 0.3;
+                // Độ mờ vừa phải
+                heartDiv.style.opacity = 0.7 + Math.random() * 0.25;
                 
                 return heartDiv;
             }
             
-            // Thả trái tim vào container
+            // Thả trái tim vào container và xóa sau khi kết thúc
             function addHeartToRain() {
                 const heart = createHeart();
                 CONTAINER.appendChild(heart);
-                // Sau khi animation kết thúc, xóa khỏi DOM để tránh rò rỉ bộ nhớ
                 heart.addEventListener('animationend', () => {
                     if (heart.parentNode) heart.remove();
                 });
             }
             
-            // Tạo mưa trái tim liên tục (30 - 45 tim mỗi giây phụ thuộc tần suất)
+            // ---- MƯA VỪA PHẢI, KHÔNG QUÁ NHIỀU, TẦN SUẤT CHẬM ĐỂ TRÁNH LAG ----
             let rainInterval;
-            function startRain(intensity = 18) {
-                // intensity: số lượng trái tim tạo ra trong 1 giây (trung bình)
+            function startGentleRain() {
                 if (rainInterval) clearInterval(rainInterval);
+                // Mỗi 1.2 giây thả từ 1 đến 2 trái tim => rất nhẹ nhàng, không làm đầy màn hình quá tải
                 rainInterval = setInterval(() => {
-                    // tạo từ 2 đến 4 trái tim mỗi đợt để mưa đẹp mắt
-                    const heartsPerBatch = Math.floor(Math.random() * 4) + 2;  // 2-5 trái tim
+                    // Số tim mỗi lần: 1 hoặc 2 (tối đa 2)
+                    const heartsPerBatch = Math.random() > 0.6 ? 2 : 1;
                     for (let i = 0; i < heartsPerBatch; i++) {
                         addHeartToRain();
                     }
-                }, 380); // ~ 380ms tạo 2-5 trái => tương đương 5-13 trái/giây, lượng vừa đủ lãng mạn
+                }, 1250);  // 1.25 giây mới thả một đợt -> lượng tim vừa phải, rơi lâu
             }
             
-            // Bắt đầu mưa trái tim
-            startRain();
+            // Khởi động mưa nhẹ nhàng
+            startGentleRain();
             
-            // Nút bấm bổ sung: thêm trái tim ngay lập tức (tăng hiệu ứng vẽ tay tương tác)
+            // Nút bấm bổ sung: thêm trái tim ngay lập tức (vẫn giữ giới hạn, không spam)
             const addBtn = document.getElementById('addHeartBtn');
             if (addBtn) {
                 addBtn.addEventListener('click', (e) => {
                     e.preventDefault();
-                    // Thêm 3-6 trái tim liên tiếp để tạo cảm giác vẽ mới
-                    const extraCount = 4 + Math.floor(Math.random() * 5);
+                    // Thêm 2-3 trái tim mỗi lần bấm (không quá nhiều)
+                    const extraCount = 2 + Math.floor(Math.random() * 2); // 2 hoặc 3 tim
                     for (let i = 0; i < extraCount; i++) {
                         setTimeout(() => {
                             addHeartToRain();
-                        }, i * 80);
+                        }, i * 100);
                     }
-                    // Thêm hiệu ứng nhấp nháy nhẹ cho nút (vui)
+                    // Hiệu ứng nhấp nháy nhẹ cho nút
                     addBtn.style.transform = 'scale(0.96)';
-                    setTimeout(() => { if(addBtn) addBtn.style.transform = ''; }, 120);
+                    setTimeout(() => { if(addBtn) addBtn.style.transform = ''; }, 130);
                 });
             }
             
-            // Tùy chọn thêm hiệu ứng vẽ tay lên ảnh khi click chuột (tạo thêm tim từ vị trí click)
+            // Tương tác click ảnh: tạo một vài trái tim từ vị trí click (hiệu ứng vẽ tay thú vị nhưng không quá tải)
             const imageElem = document.querySelector('.main-image');
             if (imageElem) {
                 imageElem.addEventListener('click', (e) => {
-                    // tạo trái tim bay lên từ vị trí click chuột trên ảnh (thú vị)
-                    const rect = imageElem.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    const relativeX = (x / rect.width) * 100;
-                    // tạo 2 trái tim nhỏ xuất phát từ vị trí click
-                    for (let i = 0; i < 2; i++) {
+                    // chỉ tạo 1 đến 2 trái tim để không bị dồn
+                    const heartCount = 1 + Math.floor(Math.random() * 2);
+                    for (let i = 0; i < heartCount; i++) {
                         const heartSpecial = createHeart();
-                        heartSpecial.style.left = `${relativeX}%`;
-                        heartSpecial.style.top = `${(e.clientY - rect.top + rect.top - window.scrollY) / window.innerHeight * 80}%`;
+                        // Đặt vị trí gần vùng click
+                        const x = e.clientX;
+                        const y = e.clientY;
                         heartSpecial.style.position = 'fixed';
-                        heartSpecial.style.top = `${e.clientY - 20}px`;
-                        heartSpecial.style.left = `${e.clientX - 20}px`;
-                        heartSpecial.style.animation = 'fall 1.6s ease-out forwards';
-                        heartSpecial.style.opacity = '1';
+                        heartSpecial.style.top = `${y - 15}px`;
+                        heartSpecial.style.left = `${x - 20}px`;
+                        heartSpecial.style.animation = 'fall 2.2s ease-out forwards';  // rơi nhanh hơn một chút để tạo cảm giác tương tác
+                        heartSpecial.style.animationDuration = '2.5s';
+                        heartSpecial.style.opacity = '0.95';
                         heartSpecial.style.width = '32px';
                         heartSpecial.style.height = '32px';
                         if (heartSpecial.classList) heartSpecial.classList.add('heart-medium');
@@ -447,40 +445,49 @@
                 });
             }
             
-            // Thỉnh thoảng bổ sung thêm trái tim kiểu "vẽ tay" xuất hiện để tạo cảm giác liên tục (giữ nguyên mưa nền)
-            // Ngoài interval chính, tạo thêm mỗi 2.5 giây một trái tim to để tạo điểm nhấn
+            // Tạo điểm nhấn: thêm một trái tim to nhưng rất thưa thớt (mỗi 6-7 giây) để tạo bất ngờ nhẹ nhàng
             setInterval(() => {
                 const bigHeart = createHeart();
                 bigHeart.classList.add('heart-large');
-                bigHeart.style.animationDuration = `${6 + Math.random() * 5}s`;
+                bigHeart.style.animationDuration = `${11 + Math.random() * 5}s`; // rơi rất chậm
                 bigHeart.style.left = `${Math.random() * 90}%`;
                 CONTAINER.appendChild(bigHeart);
                 bigHeart.addEventListener('animationend', () => bigHeart.remove());
-            }, 2800);
+            }, 6800);  // gần 7 giây mới có 1 trái tim lớn
             
-            // hiệu ứng vẽ tay: thay đổi nhẹ viền vẽ của khung ảnh (tạo cảm giác "vẽ" liên tục)
-            let borderPhase = 0;
+            // Hiệu ứng vẽ tay cho khung ảnh (nhẹ nhàng thay đổi opacity)
             const drawElem = document.querySelector('.draw-effect');
             if (drawElem) {
+                let borderPhase = 0;
                 setInterval(() => {
                     if (drawElem) {
-                        const dashValue = (borderPhase % 20) + 4;
-                        drawElem.style.setProperty('--dash', dashValue);
-                        // tạo hiệu ứng nhấp nháy mờ cho nét vẽ
-                        const opacityVal = 0.4 + Math.sin(Date.now() / 1800) * 0.15;
+                        const opacityVal = 0.35 + Math.sin(Date.now() / 2200) * 0.12;
                         drawElem.style.opacity = opacityVal;
                     }
                     borderPhase++;
-                }, 800);
+                }, 900);
             }
             
-            // Xử lý khi resize không ảnh hưởng gì, đảm bảo các tim vẫn rơi bình thường
-            window.addEventListener('resize', () => {
-                // không cần làm gì đặc biệt, giữ nguyên
-            });
+            // Dọn dẹp khi tab ẩn? (optional nhưng không cần thiết, nhưng để an toàn, không can thiệp)
+            // Xử lý khi resize không ảnh hưởng
+            window.addEventListener('resize', () => {});
             
-            // Lời nhắn console dễ thương
-            console.log('❤️ Mưa trái tim vẽ tay đang rơi! ✍️ Thêm tương tác click ảnh để bắn tim');
+            // Tối ưu: Nếu có quá nhiều phần tử trong container (hơn 100) thì xóa bớt một số cũ để tránh ùn ứ (trường hợp lâu)
+            function cleanExcessHearts() {
+                const hearts = document.querySelectorAll('.hand-drawn-heart');
+                if (hearts.length > 110) {
+                    for (let i = 0; i < 30; i++) {
+                        if (hearts[i] && hearts[i].parentNode) hearts[i].remove();
+                    }
+                }
+                requestAnimationFrame(cleanExcessHearts);
+            }
+            // Khởi chạy bộ dọn dẹp nhẹ nhàng (chỉ khi cần)
+            setTimeout(() => {
+                cleanExcessHearts();
+            }, 10000);
+            
+            console.log('❤️ Mưa trái tim chậm, nhẹ nhàng, không lag. ✨ Tương tác click ảnh và nút tim!');
         })();
     </script>
 </body>
